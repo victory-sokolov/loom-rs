@@ -8,7 +8,7 @@ A fast, privacy-focused CLI tool for recording browser windows and generating LL
 
 ## Why Loom?
 
-When working with AI assistants like Claude or GPT-4, you often need to show them UI/UX changes. Traditional screen recording tools create large files that hit upload limits. Loom solves this by:
+When working with AI assistants like Claude, you often need to show them UI/UX changes. Traditional screen recording tools create large files that hit upload limits. Loom solves this by:
 
 - **Targeting specific windows** - Record only what you need, no desktop clutter
 - **Optimizing for LLMs** - Auto-compresses to H.264/720p, targeting <10MB per minute

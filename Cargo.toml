@@ -1,0 +1,30 @@
+[package]
+name = "loom"
+version = "0.1.0"
+edition = "2021"
+description = "Fast, privacy-focused CLI for recording windows and generating LLM-optimized videos"
+license = "MIT"
+authors = ["Viktor"]
+readme = "README.md"
+repository = "https://github.com/yourusername/loom"
+keywords = ["screen-recording", "video", "llm", "cli", "macos"]
+categories = ["command-line-utilities", "multimedia::video"]
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+scap = "0.1.0-beta.1"
+screencapturekit = "0.2"
+screencapturekit-sys = "0.2"
+arboard = "3"
+anyhow = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tempfile = "3"
+which = "6"
+ctrlc = "3"
+
+[profile.release]
+lto = true
+strip = true
+opt-level = "z"      # Optimize for size

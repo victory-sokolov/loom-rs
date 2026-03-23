@@ -1,6 +1,9 @@
+#[cfg(target_os = "macos")]
 use crate::error::{LoomError, Result};
+#[cfg(target_os = "macos")]
 use scap::Target;
 
+#[cfg(target_os = "macos")]
 #[derive(Debug, Clone)]
 pub struct WindowTarget {
     pub title: String,
@@ -13,6 +16,7 @@ pub struct WindowTarget {
 }
 
 /// List all windows available for capture
+#[cfg(target_os = "macos")]
 pub fn list_all_windows() -> Result<Vec<WindowTarget>> {
     let targets = scap::get_all_targets();
 
@@ -45,6 +49,7 @@ pub fn list_all_windows() -> Result<Vec<WindowTarget>> {
 
 /// Get window dimensions and position using screencapturekit-sys directly
 /// to access the full frame including origin
+#[cfg(target_os = "macos")]
 fn get_window_dimensions(target: &Target) -> (u32, u32, i32, i32) {
     use screencapturekit_sys::shareable_content::UnsafeSCShareableContent;
 
@@ -91,6 +96,7 @@ fn get_window_dimensions(target: &Target) -> (u32, u32, i32, i32) {
 }
 
 /// Prompt user to select from multiple windows
+#[cfg(target_os = "macos")]
 pub fn prompt_window_selection(windows: &[WindowTarget]) -> Result<WindowTarget> {
     eprintln!("Available windows:");
     eprintln!();

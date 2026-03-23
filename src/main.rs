@@ -36,7 +36,8 @@ fn main() -> Result<()> {
     // Check ffmpeg availability early
     FfmpegEncoder::check_available()?;
 
-    // Check screen capture permission
+    // Check screen capture permission (macOS only)
+    #[cfg(target_os = "macos")]
     if !scap::has_permission() {
         eprintln!("Screen capture permission not granted.");
         eprintln!(

@@ -1,21 +1,28 @@
+#[cfg(target_os = "macos")]
 use std::sync::atomic::{AtomicBool, Ordering};
+#[cfg(target_os = "macos")]
 use std::sync::Arc;
 
+#[cfg(target_os = "macos")]
 use scap::{
     capturer::{Area, Capturer, Options, Point, Size},
     frame::{Frame, FrameType, VideoFrame},
     Display, Target,
 };
 
+#[cfg(target_os = "macos")]
 use super::window::WindowTarget;
+#[cfg(target_os = "macos")]
 use crate::error::{LoomError, Result};
 
+#[cfg(target_os = "macos")]
 pub struct RecorderConfig {
     pub target: WindowTarget,
     pub fps: u32,
     pub duration: Option<u32>,
 }
 
+#[cfg(target_os = "macos")]
 pub struct Recorder {
     capturer: Capturer,
     config: RecorderConfig,
@@ -23,6 +30,7 @@ pub struct Recorder {
     frame_size: [u32; 2],
 }
 
+#[cfg(target_os = "macos")]
 impl Recorder {
     pub fn new(config: RecorderConfig) -> Result<Self> {
         // WORKAROUND: scap's get_scale_factor() returns 0 for external windows

@@ -1,20 +1,33 @@
+#[cfg(target_os = "macos")]
 mod capture;
+#[cfg(target_os = "macos")]
 mod cli;
+#[cfg(target_os = "macos")]
 mod encode;
-mod error;
+#[cfg(target_os = "macos")]
 mod output;
 
+mod error;
+
+#[cfg(target_os = "macos")]
 use std::path::PathBuf;
+#[cfg(target_os = "macos")]
 use std::sync::atomic::Ordering;
+#[cfg(target_os = "macos")]
 use std::time::Instant;
 
 #[cfg(target_os = "macos")]
 use capture::{list_all_windows, prompt_window_selection, Recorder, RecorderConfig};
+#[cfg(target_os = "macos")]
 use cli::Args;
+#[cfg(target_os = "macos")]
 use encode::{EncodeConfig, FfmpegEncoder};
 use error::Result;
+#[cfg(target_os = "macos")]
 use output::{copy_path_to_clipboard, generate_llm_prompt};
+#[cfg(target_os = "macos")]
 use tracing::Level;
+#[cfg(target_os = "macos")]
 use tracing_subscriber::EnvFilter;
 
 #[cfg(target_os = "macos")]
@@ -211,6 +224,7 @@ fn list_mode() -> Result<()> {
     Ok(())
 }
 
+#[cfg(target_os = "macos")]
 fn chrono_timestamp() -> String {
     use std::time::{SystemTime, UNIX_EPOCH};
 

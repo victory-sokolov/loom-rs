@@ -13,6 +13,10 @@ categories = ["command-line-utilities", "multimedia::video"]
 rust-version = "1.70"
 exclude = ["scap-patch/"]
 
+[[bin]]
+name = "loom"
+path = "src/main.rs"
+
 [dependencies]
 clap = { version = "4", features = ["derive"] }
 arboard = "3"

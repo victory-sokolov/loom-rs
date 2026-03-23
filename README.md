@@ -1,4 +1,4 @@
-# Loom
+# Vloom
 
 A fast, privacy-focused CLI tool for recording browser windows and generating LLM-optimized videos. Built in Rust for macOS.
 
@@ -6,9 +6,9 @@ A fast, privacy-focused CLI tool for recording browser windows and generating LL
 ![macOS](https://img.shields.io/badge/platform-macOS-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-## Why Loom?
+## Why Vloom?
 
-When working with AI assistants like Claude, you often need to show them UI/UX changes. Traditional screen recording tools create large files that hit upload limits. Loom solves this by:
+When working with AI assistants like Claude, you often need to show them UI/UX changes. Traditional screen recording tools create large files that hit upload limits. Vloom solves this by:
 
 - **Targeting specific windows** - Record only what you need, no desktop clutter
 - **Optimizing for LLMs** - Auto-compresses to H.264/720p, targeting <10MB per minute
@@ -32,12 +32,18 @@ When working with AI assistants like Claude, you often need to show them UI/UX c
 
 ## Installation
 
+### From crates.io
+
+```bash
+cargo install vloom
+```
+
 ### From Source
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/loom.git
-cd loom
+git clone https://github.com/victory-sokolov/vloom.git
+cd vloom
 
 # Build release binary
 cargo build --release
@@ -58,7 +64,7 @@ brew install ffmpeg
 ### List Available Windows
 
 ```bash
-loom --list
+vloom --list
 ```
 
 Output:
@@ -76,24 +82,24 @@ Use --target "<title>" to select a specific window.
 
 ```bash
 # Interactive selection (prompts if multiple windows match)
-loom
+vloom
 
 # Target specific window by title
-loom --target "GitHub"
+vloom --target "GitHub"
 
 # Auto-stop after 30 seconds
-loom --target "My App" --duration 30
+vloom --target "My App" --duration 30
 ```
 
 ### All Options
 
 ```
-loom [OPTIONS]
+vloom [OPTIONS]
 
 Options:
   -t, --target <TARGET>      Window title filter (partial match)
   -d, --duration <SECONDS>   Auto-stop recording after N seconds
-  -o, --output <PATH>        Output file path (default: ~/loom-recordings/)
+  -o, --output <PATH>        Output file path (default: ~/vloom-recordings/)
       --fps <FPS>            Frame rate (default: 30)
       --resolution <WxH>     Target resolution (default: 1280x720)
   -l, --list                 List available windows and exit
@@ -106,10 +112,10 @@ Options:
 
 ```bash
 # 1. List windows to find your target
-loom --list
+vloom --list
 
 # 2. Start recording (Ctrl+C to stop)
-loom --target "localhost:3000" --duration 60
+vloom --target "localhost:3000" --duration 60
 
 # 3. Output:
 Recording: localhost:3000 - My App
@@ -118,7 +124,7 @@ Recording... 45s elapsed
 ^C
 Finalizing video...
 
-Recording saved: /Users/you/loom-recordings/loom-2024-03-05_14-30-22.mp4
+Recording saved: /Users/you/vloom-recordings/vloom-2024-03-05_14-30-22.mp4
 Duration: 45.2s
 Size: 4.21 MB
 Path copied to clipboard!
@@ -127,7 +133,7 @@ LLM Prompt:
 ────────────────────────────────────────
 I recorded a video of a feature implementation. Please analyze this recording:
 
-Video path: /Users/you/loom-recordings/loom-2024-03-05_14-30-22.mp4
+Video path: /Users/you/vloom-recordings/vloom-2024-03-05_14-30-22.mp4
 
 The video shows my web application running in Chrome. Please:
 1. Describe what you observe in the UI
@@ -146,14 +152,14 @@ The video shows my web application running in Chrome. Please:
 │   Enumeration   │────▶│   Capture       │────▶│   Encoding      │
 │   (scap)        │     │   (30 FPS)      │     │   (H.264)       │
 └─────────────────┘     └─────────────────┘     └─────────────────┘
-                                                        │
-                                                        ▼
-                        ┌─────────────────────────────────────┐
-                        │   Output                            │
-                        │   - ~/loom-recordings/loom-*.mp4    │
-                        │   - Clipboard: file path            │
-                        │   - LLM prompt template             │
-                        └─────────────────────────────────────┘
+                                                       │
+                                                       ▼
+                       ┌─────────────────────────────────────┐
+                       │   Output                            │
+                       │   - ~/vloom-recordings/vloom-*.mp4  │
+                       │   - Clipboard: file path            │
+                       │   - LLM prompt template             │
+                       └─────────────────────────────────────┘
 ```
 
 ### Architecture
@@ -167,13 +173,13 @@ The video shows my web application running in Chrome. Please:
 
 ## Permissions
 
-Loom requires **Screen Recording** permission on macOS:
+Vloom requires **Screen Recording** permission on macOS:
 
 1. Open **System Settings** → **Privacy & Security** → **Screen Recording**
 2. Enable your terminal app (Terminal.app, iTerm2, etc.)
 3. Restart your terminal
 
-If permission is not granted, Loom will prompt you and offer to open System Settings.
+If permission is not granted, Vloom will prompt you and offer to open System Settings.
 
 ## Output Format
 
@@ -191,7 +197,7 @@ If permission is not granted, Loom will prompt you and offer to open System Sett
 - [ ] Linux support (PipeWire)
 - [ ] Audio capture
 - [ ] GIF output option
-- [ ] Config file (~/.loom.toml)
+- [ ] Config file (~/.vloom.toml)
 - [ ] Self-update command
 - [ ] Homebrew formula
 
@@ -203,8 +209,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```bash
 # Clone and build
-git clone https://github.com/yourusername/loom.git
-cd loom
+git clone https://github.com/victory-sokolov/vloom.git
+cd vloom
 cargo build
 
 # Run tests
@@ -242,4 +248,3 @@ MIT License - see [LICENSE](LICENSE) for details.
 - [scap](https://github.com/clearlysid/scap) - Screen capture library
 - [clap](https://github.com/clap-rs/clap) - CLI framework
 - [ffmpeg](https://ffmpeg.org/) - Video encoding
-

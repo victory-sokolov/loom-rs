@@ -91,10 +91,10 @@ fn main() -> Result<()> {
     // Prepare output path
     let output_path = args.output.as_ref().map(PathBuf::from).unwrap_or_else(|| {
         let home = std::env::var("HOME").unwrap_or_else(|_| ".".into());
-        let dir = PathBuf::from(home).join("loom-recordings");
+        let dir = PathBuf::from(home).join("vloom-recordings");
         std::fs::create_dir_all(&dir).ok();
         let timestamp = chrono_timestamp();
-        dir.join(format!("loom-{}.mp4", timestamp))
+        dir.join(format!("vloom-{}.mp4", timestamp))
     });
 
     // Create recorder first to get actual frame dimensions

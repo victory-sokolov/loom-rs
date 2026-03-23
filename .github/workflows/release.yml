@@ -70,13 +70,13 @@ jobs:
       - name: Package binary
         run: |
           cd target/${{ matrix.target }}/release
-          tar -czvf loom-${{ matrix.target }}.tar.gz loom
+          tar -czvf vloom-${{ matrix.target }}.tar.gz vloom
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: loom-${{ matrix.target }}
-          path: target/${{ matrix.target }}/release/loom-${{ matrix.target }}.tar.gz
+          name: vloom-${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/vloom-${{ matrix.target }}.tar.gz
 
   publish-crate:
     runs-on: ubuntu-latest
@@ -106,5 +106,5 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/**/loom-*.tar.gz
+          files: artifacts/**/vloom-*.tar.gz
           generate_release_notes: true

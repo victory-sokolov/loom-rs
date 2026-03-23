@@ -1,7 +1,7 @@
 use clap::Parser;
 
 #[derive(Parser, Debug)]
-#[command(name = "loom")]
+#[command(name = "vloom")]
 #[command(about = "Record Chrome windows for LLM analysis")]
 #[command(version)]
 pub struct Args {
@@ -13,7 +13,7 @@ pub struct Args {
     #[arg(short, long)]
     pub duration: Option<u32>,
 
-    /// Output file path (default: ~/loom-recordings/loom-{timestamp}.mp4)
+    /// Output file path (default: ~/vloom-recordings/vloom-{timestamp}.mp4)
     #[arg(short, long)]
     pub output: Option<String>,
 

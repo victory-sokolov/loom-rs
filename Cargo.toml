@@ -1,20 +1,20 @@
 [package]
-name = "loom-rs"
+name = "vloom"
 version = "0.1.0"
 edition = "2021"
 description = "Fast, privacy-focused CLI for recording windows and generating LLM-optimized videos"
 license = "MIT"
 authors = ["Viktor"]
 readme = "README.md"
-homepage = "https://github.com/victory-sokolov/loom-rs"
-repository = "https://github.com/victory-sokolov/loom-rs"
+homepage = "https://github.com/victory-sokolov/vloom"
+repository = "https://github.com/victory-sokolov/vloom"
 keywords = ["screen-recording", "video", "llm", "cli", "macos"]
 categories = ["command-line-utilities", "multimedia::video"]
 rust-version = "1.70"
 exclude = ["scap-patch/"]
 
 [[bin]]
-name = "loom"
+name = "vloom"
 path = "src/main.rs"
 
 [dependencies]

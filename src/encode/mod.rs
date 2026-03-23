@@ -1,3 +1,3 @@
 mod ffmpeg;
 
-pub use ffmpeg::{FfmpegEncoder, EncodeConfig};
+pub use ffmpeg::{EncodeConfig, FfmpegEncoder};

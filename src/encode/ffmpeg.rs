@@ -22,8 +22,7 @@ pub struct FfmpegEncoder {
 impl FfmpegEncoder {
     /// Check if ffmpeg is available
     pub fn check_available() -> Result<()> {
-        which::which("ffmpeg")
-            .map_err(|_| LoomError::FfmpegNotFound)?;
+        which::which("ffmpeg").map_err(|_| LoomError::FfmpegNotFound)?;
         Ok(())
     }
 
@@ -40,18 +39,29 @@ impl FfmpegEncoder {
 
         let mut cmd = Command::new("ffmpeg");
         cmd.args([
-            "-y",  // Overwrite output
-            "-f", "rawvideo",
-            "-pixel_format", "bgra",
-            "-video_size", &format!("{}x{}", config.width, config.height),
-            "-framerate", &format!("{}", config.fps),
-            "-i", "-",  // Read from stdin
-            "-c:v", "libx264",
-            "-preset", "fast",
-            "-crf", &format!("{}", config.crf),
-            "-pix_fmt", "yuv420p",
-            "-vf", &scale_filter,
-            "-movflags", "+faststart",  // Web-friendly output
+            "-y", // Overwrite output
+            "-f",
+            "rawvideo",
+            "-pixel_format",
+            "bgra",
+            "-video_size",
+            &format!("{}x{}", config.width, config.height),
+            "-framerate",
+            &format!("{}", config.fps),
+            "-i",
+            "-", // Read from stdin
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            &format!("{}", config.crf),
+            "-pix_fmt",
+            "yuv420p",
+            "-vf",
+            &scale_filter,
+            "-movflags",
+            "+faststart", // Web-friendly output
         ])
         .arg(&output_str)
         .stdin(Stdio::piped())

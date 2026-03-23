@@ -61,8 +61,8 @@ impl Recorder {
             exclude_current_process_audio: false,
         };
 
-        let capturer = Capturer::build(options)
-            .map_err(|e| LoomError::CaptureFailed(e.to_string()))?;
+        let capturer =
+            Capturer::build(options).map_err(|e| LoomError::CaptureFailed(e.to_string()))?;
 
         // Use dimensions from WindowTarget (the cropped area size)
         let frame_size = [config.target.width, config.target.height];

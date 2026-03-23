@@ -5,8 +5,8 @@ use crate::error::{LoomError, Result};
 /// Copy text to system clipboard
 pub fn copy_path_to_clipboard(path: &Path) -> Result<()> {
     let path_str = path.to_string_lossy();
-    let mut clipboard = arboard::Clipboard::new()
-        .map_err(|e| LoomError::Clipboard(e.to_string()))?;
+    let mut clipboard =
+        arboard::Clipboard::new().map_err(|e| LoomError::Clipboard(e.to_string()))?;
 
     clipboard
         .set_text(path_str.as_ref())

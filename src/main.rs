@@ -20,7 +20,11 @@ fn main() -> Result<()> {
     let args = Args::parse_args();
 
     // Setup logging
-    let level = if args.verbose { Level::DEBUG } else { Level::INFO };
+    let level = if args.verbose {
+        Level::DEBUG
+    } else {
+        Level::INFO
+    };
     tracing_subscriber::fmt()
         .with_env_filter(
             EnvFilter::builder()
@@ -35,7 +39,9 @@ fn main() -> Result<()> {
     // Check screen capture permission
     if !scap::has_permission() {
         eprintln!("Screen capture permission not granted.");
-        eprintln!("Please grant permission in System Settings > Privacy & Security > Screen Recording");
+        eprintln!(
+            "Please grant permission in System Settings > Privacy & Security > Screen Recording"
+        );
         scap::request_permission();
         return Ok(());
     }
@@ -83,7 +89,7 @@ fn main() -> Result<()> {
     tracing::info!("Recording: {}", target.title);
 
     // Prepare output path
-    let output_path = args.output.as_ref().map(|s| PathBuf::from(s)).unwrap_or_else(|| {
+    let output_path = args.output.as_ref().map(PathBuf::from).unwrap_or_else(|| {
         let home = std::env::var("HOME").unwrap_or_else(|_| ".".into());
         let dir = PathBuf::from(home).join("loom-recordings");
         std::fs::create_dir_all(&dir).ok();
@@ -204,9 +210,7 @@ fn list_mode() -> Result<()> {
 fn chrono_timestamp() -> String {
     use std::time::{SystemTime, UNIX_EPOCH};
 
-    let now = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .unwrap();
+    let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
 
     let total_secs = now.as_secs();
     let days = total_secs / 86400;

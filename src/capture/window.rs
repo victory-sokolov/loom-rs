@@ -96,19 +96,27 @@ pub fn prompt_window_selection(windows: &[WindowTarget]) -> Result<WindowTarget>
     eprintln!();
 
     for (i, w) in windows.iter().enumerate() {
-        eprintln!("  [{}] {} ({}x{} at {},{})", i + 1, w.title, w.width, w.height, w.x, w.y);
+        eprintln!(
+            "  [{}] {} ({}x{} at {},{})",
+            i + 1,
+            w.title,
+            w.width,
+            w.height,
+            w.x,
+            w.y
+        );
     }
 
     eprintln!();
     eprint!("Select window [1-{}]: ", windows.len());
 
     let mut input = String::new();
-    std::io::stdin()
-        .read_line(&mut input)
-        .map_err(|_| LoomError::Io(std::io::Error::new(
+    std::io::stdin().read_line(&mut input).map_err(|_| {
+        LoomError::Io(std::io::Error::new(
             std::io::ErrorKind::Other,
             "Failed to read input",
-        )))?;
+        ))
+    })?;
 
     let selection: usize = input
         .trim()

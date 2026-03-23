@@ -8,6 +8,7 @@ use std::path::PathBuf;
 use std::sync::atomic::Ordering;
 use std::time::Instant;
 
+#[cfg(target_os = "macos")]
 use capture::{list_all_windows, prompt_window_selection, Recorder, RecorderConfig};
 use cli::Args;
 use encode::{EncodeConfig, FfmpegEncoder};
@@ -16,6 +17,7 @@ use output::{copy_path_to_clipboard, generate_llm_prompt};
 use tracing::Level;
 use tracing_subscriber::EnvFilter;
 
+#[cfg(target_os = "macos")]
 fn main() -> Result<()> {
     let args = Args::parse_args();
 
@@ -187,6 +189,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
+#[cfg(target_os = "macos")]
 fn list_mode() -> Result<()> {
     let windows = list_all_windows()?;
 
@@ -230,4 +233,10 @@ fn chrono_timestamp() -> String {
         "{:04}-{:02}-{:02}_{:02}-{:02}-{:02}",
         year, month, day, hours, minutes, seconds
     )
+}
+
+#[cfg(not(target_os = "macos"))]
+fn main() -> Result<()> {
+    eprintln!("vloom is only supported on macOS");
+    std::process::exit(1);
 }

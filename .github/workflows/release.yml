@@ -19,7 +19,7 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          components: rustfmt, clippy`
+          components: rustfmt, clippy
 
       - name: Cache cargo registry
         uses: actions/cache@v4
